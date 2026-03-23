@@ -1,0 +1,59 @@
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gully World logo">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="140" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E3A8A"/>
+    </linearGradient>
+    <linearGradient id="swoosh" x1="20" y1="90" x2="120" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F97316"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="140" height="140" rx="32" fill="url(#bgGrad)"/>
+
+  <!-- Subtle ring decoration -->
+  <circle cx="70" cy="68" r="46" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.08"/>
+  <circle cx="70" cy="68" r="38" fill="none" stroke="#FFFFFF" stroke-width="0.7" stroke-opacity="0.05"/>
+
+  <!-- Dynamic swoosh arc behind the ball -->
+  <path d="M24 88 Q50 52, 70 54 Q90 56, 116 88" stroke="url(#swoosh)" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M30 95 Q54 62, 70 64 Q86 66, 110 95" stroke="#F97316" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-opacity="0.4"/>
+
+  <!-- Red Football (soccer ball) -->
+  <circle cx="70" cy="58" r="24" fill="#DC2626"/>
+  <circle cx="70" cy="58" r="24" fill="none" stroke="#991B1B" stroke-width="1.2"/>
+
+  <!-- Classic pentagon pattern on football - white panels -->
+  <polygon points="70,42 76,47 74,54 66,54 64,47" fill="#FFFFFF" fill-opacity="0.95"/>
+  <polygon points="64,47 58,44 53,50 56,56 66,54" fill="#FFFFFF" fill-opacity="0.3"/>
+  <polygon points="76,47 82,44 87,50 84,56 74,54" fill="#FFFFFF" fill-opacity="0.3"/>
+  <polygon points="66,54 56,56 55,64 62,70 70,66" fill="#FFFFFF" fill-opacity="0.3"/>
+  <polygon points="74,54 84,56 85,64 78,70 70,66" fill="#FFFFFF" fill-opacity="0.3"/>
+  <polygon points="62,70 65,78 75,78 78,70 70,66" fill="#FFFFFF" fill-opacity="0.3"/>
+
+  <!-- Pentagon seam lines -->
+  <polygon points="70,42 76,47 74,54 66,54 64,47" fill="none" stroke="#FFFFFF" stroke-width="0.8" stroke-opacity="0.6"/>
+  <line x1="70" y1="42" x2="70" y2="34" stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.4"/>
+  <line x1="76" y1="47" x2="83" y2="43" stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.4"/>
+  <line x1="64" y1="47" x2="57" y2="43" stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.4"/>
+  <line x1="74" y1="54" x2="84" y2="56" stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.4"/>
+  <line x1="66" y1="54" x2="56" y2="56" stroke="#FFFFFF" stroke-width="0.6" stroke-opacity="0.4"/>
+
+  <!-- Mustache on the ball -->
+  <path d="M58 60 Q62 56, 66 60 Q68 62, 70 59 Q72 62, 74 60 Q78 56, 82 60" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <path d="M58 60 Q55 62, 53 60" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M82 60 Q85 62, 87 60" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Letter G -->
+  <text x="37" y="118" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" text-anchor="middle">G</text>
+
+  <!-- Letter W -->
+  <text x="103" y="118" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" text-anchor="middle">W</text>
+
+  <!-- Small sparkle accents -->
+  <circle cx="27" cy="28" r="2.5" fill="#FBBF24" opacity="0.7"/>
+  <circle cx="113" cy="28" r="1.8" fill="#F97316" opacity="0.5"/>
+  <circle cx="70" cy="18" r="1.5" fill="#FFFFFF" opacity="0.3"/>
+</svg>

@@ -15,6 +15,10 @@ import StorePage from './pages/StorePage'
 import ContactPage from './pages/ContactPage'
 import PricingPage from './pages/PricingPage'
 import TurfPartnerPage from './pages/TurfPartnerPage'
+import LoginPage from './pages/LoginPage.tsx'
+import { events } from './pages/EventsPage'
+import { challenges } from './pages/ChallengesPage'
+import { players } from './pages/PlayerProfilesPage'
 
 const menuGroups = [
   {
@@ -31,20 +35,31 @@ const menuGroups = [
 ]
 
 
-const partnerClubs = ['Mumbai Mavericks', 'Royal Turf', 'Cover Drive CC', 'Night Riders', 'PowerPlay XI']
+const quickAccessActions = [
+  { label: 'Hire a Player', path: '/players' },
+  { label: 'Join Live Events', path: '/events' },
+  { label: 'Book a Turf', path: '/turf-partner' },
+  { label: 'Start a Tournament', path: '/tournament' },
+]
 
 const featureCards = [
   {
     title: 'Get hired and build your profile',
     text: 'Players can showcase skills, publish achievements, and get hired by teams, partners, and organizers.',
+    actionLabel: 'Build My Profile',
+    actionPath: '/players',
   },
   {
     title: 'Tournaments and events in one flow',
     text: 'Conduct tournaments, create events, manage registrations, and coordinate schedules from one dashboard.',
+    actionLabel: 'Run Tournament',
+    actionPath: '/tournament',
   },
   {
     title: 'Talent Hub built on hire-and-offer logic',
     text: 'Hire sports talent or create your own profile to get hired, inspired by Fiverr-style service flow.',
+    actionLabel: 'Open Talent Hub',
+    actionPath: '/marketplace',
   },
 ]
 
@@ -54,35 +69,26 @@ const stats = [
   { value: '3200+', label: 'teams hiring talent' },
 ]
 
-/* Brand wordmark: GULLY W⚽RLD — Playo-style clean big text with football as O */
-function BrandWordmark() {
+const platformFeatures = [
+  { id: '01', icon: '⚡', title: 'Live Events', desc: 'Discover instant sports action happening around you right now.', path: '/events', btn: 'Browse Events' },
+  { id: '02', icon: '🏆', title: 'Run Tournaments', desc: 'Organize brackets, manage fixtures, and track standings end to end.', path: '/tournament', btn: 'Start Tournament' },
+  { id: '03', icon: '🎯', title: 'Challenges', desc: 'Post a challenge, rally rivals, and compete for bragging rights.', path: '/challenges', btn: 'View Challenges' },
+  { id: '04', icon: '🤝', title: 'Hire Players', desc: 'Scout proven talent and fill your squad vacancies in minutes.', path: '/marketplace', btn: 'Open Talent Hub' },
+  { id: '05', icon: '👤', title: 'Player Profiles', desc: 'Build your sporting CV, publish stats, and get discovered.', path: '/players', btn: 'See Players' },
+  { id: '06', icon: '🛡️', title: 'Team Pages', desc: 'Manage rosters, share stories, and rally your fan base.', path: '/teams', btn: 'Explore Teams' },
+  { id: '07', icon: '🔨', title: 'Player Auction', desc: 'Run a live auction, set budgets, and draft your dream team.', path: '/auction', btn: 'Open Auction' },
+  { id: '08', icon: '🛒', title: 'Sports Store', desc: 'Kit up with licensed gear, jerseys, and sports accessories.', path: '/store', btn: 'Visit Store' },
+  { id: '09', icon: '🗺️', title: 'List Your Turf', desc: 'Register your ground and start receiving booking requests.', path: '/turf-partner', btn: 'Register Turf' },
+  { id: '10', icon: '💬', title: 'Community', desc: 'Connect with players, coaches, and organizers near you.', path: '/contact', btn: 'Join Now' },
+]
+
+/* Brand wordmark: GULLY WORLD — clean 2-color athletic type */
+function BrandWordmark({ size = 'default' }: { size?: 'default' | 'footer' }) {
+  const cls = size === 'footer' ? 'brand-wordmark brand-wordmark-footer' : 'brand-wordmark';
   return (
-    <span className="brand-wordmark">
-      <span className="wordmark-gully">GULLY</span>
-      <span className="wordmark-space">&nbsp;</span>
-      <span className="wordmark-w">W</span>
-      <svg className="wordmark-football" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="18" fill="#DC2626" />
-        <circle cx="20" cy="20" r="18" fill="none" stroke="#991B1B" strokeWidth="1"/>
-        {/* Classic pentagon pattern */}
-        <polygon points="20,8 25,12 23,18 17,18 15,12" fill="#FFFFFF" fillOpacity="0.9"/>
-        <polygon points="15,12 10,10 7,15 10,20 17,18" fill="#FFFFFF" fillOpacity="0.25"/>
-        <polygon points="25,12 30,10 33,15 30,20 23,18" fill="#FFFFFF" fillOpacity="0.25"/>
-        <polygon points="17,18 10,20 9,27 15,32 20,28" fill="#FFFFFF" fillOpacity="0.25"/>
-        <polygon points="23,18 30,20 31,27 25,32 20,28" fill="#FFFFFF" fillOpacity="0.25"/>
-        {/* Seam lines */}
-        <polygon points="20,8 25,12 23,18 17,18 15,12" fill="none" stroke="#FFFFFF" strokeWidth="0.6" strokeOpacity="0.5"/>
-        <line x1="20" y1="8" x2="20" y2="2" stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.3"/>
-        <line x1="25" y1="12" x2="31" y2="9" stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.3"/>
-        <line x1="15" y1="12" x2="9" y2="9" stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.3"/>
-        <line x1="23" y1="18" x2="30" y2="20" stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.3"/>
-        <line x1="17" y1="18" x2="10" y2="20" stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.3"/>
-        {/* Mustache */}
-        <path d="M12 22 Q15 18, 18 22 Q19 24, 20 21 Q21 24, 22 22 Q25 18, 28 22" stroke="#FFFFFF" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-        <path d="M12 22 Q10 24, 8 22" stroke="#FFFFFF" strokeWidth="1.6" fill="none" strokeLinecap="round"/>
-        <path d="M28 22 Q30 24, 32 22" stroke="#FFFFFF" strokeWidth="1.6" fill="none" strokeLinecap="round"/>
-      </svg>
-      <span className="wordmark-rld">RLD</span>
+    <span className={cls} aria-label="Gully World">
+      <span className="wm-gully">GULLY</span>
+      <span className="wm-world">WORLD</span>
     </span>
   )
 }
@@ -272,7 +278,7 @@ function Header() {
 
         <div className="topbar-actions">
           <Link className="header-secondary-link" to="/pricing">Pricing</Link>
-          <Link className="header-link" to="/">Login / Signup</Link>
+          <Link className="header-link" to="/login">Login / Signup</Link>
         </div>
       </header>
     </>
@@ -314,28 +320,28 @@ function SocialIcon({ platform }: { platform: 'facebook' | 'instagram' | 'youtub
 function Footer() {
   return (
     <>
-      {/* Playo-style CTA banner */}
-      <section className="cta-banner">
-        <div className="cta-banner-inner">
-          <div className="cta-banner-text">
-            <h2>Ready to play? Join the largest sports network today.</h2>
-            <p>Create events, hire players, run tournaments — all on one platform.</p>
-          </div>
-          <div className="cta-banner-actions">
-            <Link className="cta-btn-primary" to="/events">Create Event</Link>
-            <Link className="cta-btn-secondary" to="/tournament">Start Tournament</Link>
-            <Link className="cta-btn-secondary" to="/pricing">View Pricing</Link>
+      {/* Sports-themed footer */}
+      <footer className="footer-main">
+        <div className="footer-sports-bg" aria-hidden="true">
+          <span>⚽</span><span>🏏</span><span>🏀</span><span>🎾</span><span>🏐</span><span>🥊</span><span>🏑</span><span>🏸</span>
+        </div>
+        <div className="footer-top-band">
+          <div className="footer-top-inner">
+            <div className="footer-top-copy">
+              <h2>Ready to dominate your sport?</h2>
+              <p>Events, tournaments, hiring, and community — one platform, zero limits.</p>
+            </div>
+            <div className="footer-top-actions">
+              <Link className="footer-cta-primary" to="/events">Create Event</Link>
+              <Link className="footer-cta-secondary" to="/players">Hire Talent</Link>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* Playo-style Footer */}
-      <footer className="footer-main">
         <div className="footer-inner">
           <div className="footer-col footer-brand-col">
             <Link to="/" className="footer-brand-link">
               <img className="footer-logo" src={gullyWorldLogo} alt="Gully World" />
-              <span className="footer-brand-text">GULLY WORLD</span>
+              <BrandWordmark size="footer" />
             </Link>
             <p className="footer-tagline">The sports network for modern players</p>
             <div className="footer-social">
@@ -388,11 +394,56 @@ function Footer() {
 }
 
 function HomePage() {
-  const firstTwoFeatures = menuGroups[0].items.slice(0, 2)
+  const [activeCity, setActiveCity] = useState('Bangalore')
+
+  useEffect(() => {
+    const savedCity = localStorage.getItem('gullyworld-city') || 'Bangalore'
+    setActiveCity(savedCity)
+  }, [])
+
+  const liveEventsCount = events.filter((item) => item.status === 'Live').length
+  const liveChallengesCount = challenges.filter((item) => item.status === 'Live').length
+  const cityPlayersCount = players.filter((item) => item.city.toLowerCase() === activeCity.toLowerCase()).length || players.length
+
+  const dynamicFeed = [
+    {
+      label: `${liveEventsCount} events firing right now 🔥`,
+      path: '/events',
+      chip: 'Jump In',
+      meta: 'Instant action. Real prizes. Real players.',
+    },
+    {
+      label: `${liveChallengesCount} battles waiting for you`,
+      path: '/challenges',
+      chip: 'Compete',
+      meta: `Level up against the best near ${activeCity}`,
+    },
+    {
+      label: `${cityPlayersCount} superstars ready to hire`,
+      path: '/players',
+      chip: 'Hire Now',
+      meta: `Unbeatable talent. Fast booking. ${activeCity} focus.`,
+    },
+  ]
 
   return (
     <main>
       <section className="hero-panel">
+        <div className="hero-panel-media" aria-hidden="true">
+          <video
+            className="hero-panel-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={cricketHero}
+          >
+            <source src="/videos/dhoni-six.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-panel-scrim"></div>
+        </div>
+
         <div className="hero-copy">
           <p className="eyebrow">The sports network for modern players</p>
           <h1>Get discovered, get hired, and run sports events at scale.</h1>
@@ -408,9 +459,12 @@ function HomePage() {
               Explore Features
             </Link>
           </div>
-          <div className="club-ticker">
-            {partnerClubs.map((club) => (
-              <span key={club}>{club}</span>
+          <div className="hero-store-inline">
+            <AppStoreBadges compact />
+          </div>
+          <div className="club-ticker" aria-label="Quick access actions">
+            {quickAccessActions.map((item) => (
+              <Link key={item.label} className="quick-access-chip" to={item.path}>{item.label}</Link>
             ))}
           </div>
           <div className="stat-strip" id="stats">
@@ -424,48 +478,44 @@ function HomePage() {
         </div>
 
         <div className="hero-stage" aria-label="Cricket app hero image and live widgets">
-          <div className="hero-download-strip">
-            <AppStoreBadges compact />
-          </div>
           <section className="score-shell">
-            <div className="score-visual">
-              <img className="hero-image" src={cricketHero} alt="Cricket player celebrating on the field" />
-            </div>
-
-            <div className="score-floating-card primary-floating-card">
-              <div className="score-topline">
-                <span className="pulse-dot"></span>
-                <span>Live Event</span>
-                <span className="chip">Open</span>
-              </div>
-              <strong>1264</strong>
-              <p>Players available to hire now</p>
-              <span>Updated 2 min ago</span>
-            </div>
-
-            <div className="score-list" id="matches">
-              <article className="score-card compact-card featured-compact-card">
-                <div className="compact-head">
-                  <p>Trending Format</p>
-                  <span className="chip alt">Auction</span>
-                </div>
-                <strong>City Sports Draft 2026</strong>
-                <div className="compact-foot">
-                  <span>42 teams</span>
-                  <span>11 partners</span>
-                </div>
-              </article>
-
-              <div className="match-stack">
-                {firstTwoFeatures.map((item) => (
-                  <article className="score-card compact-card stack-card" key={item.label}>
-                    <div className="compact-head">
-                      <p>{item.label}</p>
-                      <span className="chip alt">New</span>
+            <div className="score-phone-shell">
+              <div className="score-phone-notch" aria-hidden="true"></div>
+              <div className="score-visual">
+                <img className="hero-image" src={cricketHero} alt="Cricket player celebrating on the field" />
+                <div className="score-visual-scrim"></div>
+                <div className="score-phone-feed" id="matches">
+                  <div className="score-floating-card primary-floating-card">
+                    <div className="score-topline">
+                      <span className="pulse-dot"></span>
+                      <span>Live Feed</span>
+                      <span className="chip">Now</span>
                     </div>
-                    <strong>{item.text}</strong>
-                  </article>
-                ))}
+                    <Link to="/events" className="active-plays-link">
+                      <strong>{liveEventsCount + liveChallengesCount}</strong>
+                      <span>active plays</span>
+                    </Link>
+                    <p>Scouting, hiring, and event action in {activeCity}</p>
+                    <span>Open any tile to jump directly into that section.</span>
+                  </div>
+
+                  <div className="score-list">
+                    {dynamicFeed.map((item, index) => (
+                      <Link className={`score-card compact-card live-event-card feed-insight-card${index === 0 ? ' featured-compact-card' : ''}`} to={item.path} key={item.label}>
+                        <div className="compact-head">
+                          <p>Live update</p>
+                          <span className="chip alt">{item.chip}</span>
+                        </div>
+                        <strong>{item.label}</strong>
+                        <p className="feed-meta-text">{item.meta}</p>
+                        <div className="compact-foot">
+                          <span>{activeCity}</span>
+                          <span>Open</span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -473,9 +523,26 @@ function HomePage() {
       </section>
 
       <section className="feature-band" id="features">
-        <div className="section-heading">
-          <p className="eyebrow">Everything a sports ecosystem needs</p>
-          <h2>From events and tournaments to hiring and partner discovery, everything stays in one platform.</h2>
+        <div className="feature-band-top">
+          <div className="section-heading">
+            <p className="eyebrow">Everything a sports ecosystem needs</p>
+            <h2>From events and tournaments to hiring and partner discovery, everything stays in one platform.</h2>
+            <p className="feature-subtext">Move from discovering games to closing hires in one continuous sports workflow.</p>
+          </div>
+          <article className="sponsor-ad-card" aria-label="Sponsor advertising">
+            <div className="sponsor-ad-badge">
+              <p>Partner with us</p>
+              <span>Featured Spot</span>
+            </div>
+            <h3>Advertise your sports brand to thousands of active players and organizers</h3>
+            <p className="sponsor-ad-description">Reach your audience. Get discovered. Grow your sports business.</p>
+            <ul className="sponsor-benefits">
+              <li>✓ Premium placement on homepage</li>
+              <li>✓ Access 100K+ sports enthusiasts</li>
+              <li>✓ Sponsor badges and co-branding</li>
+            </ul>
+            <Link className="sponsor-ad-cta" to="/contact#advertise">Click here to advertise</Link>
+          </article>
         </div>
         <div className="feature-grid">
           {featureCards.map((feature, index) => (
@@ -483,6 +550,7 @@ function HomePage() {
               <span className="feature-index">{String(index + 1).padStart(2, '0')}</span>
               <h3>{feature.title}</h3>
               <p>{feature.text}</p>
+              <Link className="feature-card-action" to={feature.actionPath}>{feature.actionLabel}</Link>
             </article>
           ))}
         </div>
@@ -499,26 +567,51 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="insight-panel">
-        <div className="insight-copy">
-          <p className="eyebrow">Built for player-first growth</p>
-          <h2>Launch now for hiring and events, then extend into store integrations in future releases.</h2>
-          <p>
-            Gully World Technology builds sports-centered platforms. Role-based dashboards for players, partners,
-            organizers, and talent providers are available as your next step.
-          </p>
+      <section className="insight-panel feature-showcase-section">
+        <div className="feature-showcase-header">
+          <p className="eyebrow">How Gully World works</p>
+          <h2>Everything you need to dominate your sport</h2>
         </div>
-        <div className="roadmap-card" id="download">
-          <p className="card-label">Suggested next modules</p>
-          <ul>
-            <li>Player hiring profile and portfolio pages</li>
-            <li>Tournament and event creation workflows</li>
-            <li>Partner onboarding and lead management</li>
-            <li>Future-ready sports store integration</li>
-          </ul>
-          <Link className="primary-action block-action" to="/tournament">
-            Build Next Feature
-          </Link>
+        <div className="feature-showcase-layout">
+          <div className="features-left">
+            {platformFeatures.slice(0, 5).map((feature) => (
+              <article key={feature.id} className="feature-showcase-card">
+                <div className="fsc-top">
+                  <span className="fsc-icon">{feature.icon}</span>
+                  <span className="fsc-num">{feature.id}</span>
+                </div>
+                <h4>{feature.title}</h4>
+                <p>{feature.desc}</p>
+                <Link className="fsc-btn" to={feature.path}>{feature.btn}</Link>
+              </article>
+            ))}
+          </div>
+
+          <div className="showcase-phone-frame">
+            <div className="phone-notch"></div>
+            <div className="phone-screen">
+              <img src={cricketHero} alt="Live sports action on Gully World" className="phone-content" />
+              <div className="phone-overlay">
+                <div className="live-badge">● LIVE</div>
+                <Link className="phone-action" to="/login">Tap to join</Link>
+              </div>
+            </div>
+            <div className="phone-frame-bottom"></div>
+          </div>
+
+          <div className="features-right">
+            {platformFeatures.slice(5, 10).map((feature) => (
+              <article key={feature.id} className="feature-showcase-card">
+                <div className="fsc-top">
+                  <span className="fsc-icon">{feature.icon}</span>
+                  <span className="fsc-num">{feature.id}</span>
+                </div>
+                <h4>{feature.title}</h4>
+                <p>{feature.desc}</p>
+                <Link className="fsc-btn" to={feature.path}>{feature.btn}</Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>
@@ -842,6 +935,7 @@ function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/turf-partner" element={<TurfPartnerPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
         <SupportChatWidget />
         <Footer />

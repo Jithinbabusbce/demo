@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import '../App.css'
 
-const challenges = [
+export const challenges = [
   { name: 'Six Hitting Challenge', sport: 'Cricket', prize: '₹10,000', entries: 342, deadline: 'Mar 30, 2026', status: 'Live' },
   { name: 'Free Kick Master', sport: 'Football', prize: '₹8,000', entries: 218, deadline: 'Apr 5, 2026', status: 'Upcoming' },
   { name: 'Sprint King 100m', sport: 'Athletics', prize: '₹15,000', entries: 156, deadline: 'Apr 10, 2026', status: 'Finished' },

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import '../App.css'
 
-const players = [
+export const players = [
   { name: 'Arjun Mehta', sport: 'Cricket', role: 'All-Rounder', rating: 4.8, matches: 156, city: 'Mumbai' },
   { name: 'Priya Sharma', sport: 'Football', role: 'Midfielder', rating: 4.6, matches: 98, city: 'Delhi' },
   { name: 'Rahul Desai', sport: 'Cricket', role: 'Fast Bowler', rating: 4.9, matches: 210, city: 'Bangalore' },

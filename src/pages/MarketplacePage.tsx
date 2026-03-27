@@ -294,38 +294,37 @@ export default function MarketplacePage() {
           </button>
         </section>
 
-        <section className="marketplace-filter-panel" aria-label="Talent Hub filter and sort controls">
-          <div className="marketplace-filter-row">
-            <input
-              type="search"
-              className="marketplace-search"
-              placeholder="Search talent by skill, role, city, or sport"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-            />
+        <section className="marketplace-filter-bar-compact" aria-label="Talent Hub filter and sort controls">
+          <div className="marketplace-compact-single-row">
+            <div className="marketplace-compact-search-box">
+              <svg className="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5-1.48 1.48-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/>
+              </svg>
+              <input
+                type="search"
+                placeholder="Search talent..."
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+              />
+            </div>
 
-            <label className="marketplace-select-wrap">
-              <span>Sort</span>
+            <div className="marketplace-compact-pill-select">
               <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
                 {sortOptions.map((item) => (
                   <option key={item} value={item}>{item}</option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label className="marketplace-select-wrap">
-              <span>Budget</span>
+            <div className="marketplace-compact-pill-select">
               <select value={budgetRange} onChange={(event) => setBudgetRange(event.target.value)}>
                 {budgetOptions.map((item) => (
                   <option key={item} value={item}>{item}</option>
                 ))}
               </select>
-            </label>
-          </div>
+            </div>
 
-          <div className="marketplace-filter-row compact">
-            <label className="marketplace-select-wrap">
-              <span>Sport</span>
+            <div className="marketplace-compact-pill-select">
               <select value={sport} onChange={(event) => {
                 setSport(event.target.value)
                 setRole('All Roles')
@@ -335,38 +334,35 @@ export default function MarketplacePage() {
                 <option value="Football">Football</option>
                 <option value="Badminton">Badminton</option>
               </select>
-            </label>
+            </div>
 
-            <label className="marketplace-select-wrap">
-              <span>Service Role</span>
+            <div className="marketplace-compact-pill-select">
               <select value={role} onChange={(event) => setRole(event.target.value)}>
                 {roleOptions.map((item) => (
                   <option key={item} value={item}>{item}</option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label className="marketplace-select-wrap">
-              <span>Player Level</span>
+            <div className="marketplace-compact-pill-select">
               <select value={level} onChange={(event) => setLevel(event.target.value)}>
                 {levelOptions.map((item) => (
                   <option key={item} value={item}>{item}</option>
                 ))}
               </select>
-            </label>
+            </div>
 
-            <label className="marketplace-select-wrap">
-              <span>Service Tier</span>
+            <div className="marketplace-compact-pill-select">
               <select value={serviceLevel} onChange={(event) => setServiceLevel(event.target.value)}>
                 {serviceLevelOptions.map((item) => (
                   <option key={item} value={item}>{item}</option>
                 ))}
               </select>
-            </label>
+            </div>
 
             <button
               type="button"
-              className="subpage-clear-filter-btn"
+              className="marketplace-compact-clear-pill"
               onClick={() => {
                 setQuery('')
                 setSport('All Sports')
@@ -377,7 +373,7 @@ export default function MarketplacePage() {
                 setSortBy('Best Match')
               }}
             >
-              Clear Filter
+              Clear
             </button>
           </div>
         </section>

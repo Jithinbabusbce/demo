@@ -66,60 +66,58 @@ export default function TurfPartnerPage() {
 
         {tab === 'book' ? (
           <>
-            <section className="marketplace-filter-panel" aria-label="Turf search and filter">
-              <div className="marketplace-filter-row">
-                <input
-                  type="search"
-                  className="marketplace-search"
-                  placeholder="Search turf by name, city, or surface"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <label className="marketplace-select-wrap">
-                  <span>Sport</span>
-                  <select value={sport} onChange={(event) => setSport(event.target.value)}>
-                    <option value="All Sports">All Sports</option>
-                    <option value="Cricket">Cricket</option>
-                    <option value="Football">Football</option>
-                    <option value="Badminton">Badminton</option>
-                  </select>
-                </label>
-
-                <label className="marketplace-select-wrap">
-                  <span>Availability</span>
-                  <select value={availability} onChange={(event) => setAvailability(event.target.value)}>
-                    <option value="Any Availability">Any Availability</option>
-                    <option value="Available Now">Available Now</option>
-                    <option value="Today Evening">Today Evening</option>
-                    <option value="Fully Booked">Fully Booked</option>
-                  </select>
-                </label>
+            <section className="turf-filter-bar-fiverr" aria-label="Turf search and filter">
+              <div className="turf-filter-top-row">
+                <div className="turf-search-box">
+                  <svg className="turf-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5-1.48 1.48-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/>
+                  </svg>
+                  <input
+                    type="search"
+                    placeholder="Search turf by name, city, or surface"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                  />
+                </div>
+                <div className="turf-pill-filters">
+                  <div className="turf-pill-select">
+                    <select value={sport} onChange={(event) => setSport(event.target.value)}>
+                      <option value="All Sports">All Sports</option>
+                      <option value="Cricket">Cricket</option>
+                      <option value="Football">Football</option>
+                      <option value="Badminton">Badminton</option>
+                    </select>
+                  </div>
+                  <div className="turf-pill-select">
+                    <select value={availability} onChange={(event) => setAvailability(event.target.value)}>
+                      <option value="Any Availability">Availability</option>
+                      <option value="Available Now">Available Now</option>
+                      <option value="Today Evening">Today Evening</option>
+                      <option value="Fully Booked">Fully Booked</option>
+                    </select>
+                  </div>
+                  <div className="turf-pill-select">
+                    <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+                      <option>Top Rated</option>
+                      <option>Price Low to High</option>
+                      <option>Price High to Low</option>
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    className="turf-clear-pill"
+                    onClick={() => {
+                      setQuery('')
+                      setSport('All Sports')
+                      setAvailability('Any Availability')
+                      setSortBy('Top Rated')
+                    }}
+                  >
+                    Clear
+                  </button>
+                </div>
               </div>
-
-              <div className="marketplace-filter-row turf-filter-row">
-                <label className="marketplace-select-wrap">
-                  <span>Sort</span>
-                  <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
-                    <option>Top Rated</option>
-                    <option>Price Low to High</option>
-                    <option>Price High to Low</option>
-                  </select>
-                </label>
-
-                <button
-                  type="button"
-                  className="subpage-clear-filter-btn"
-                  onClick={() => {
-                    setQuery('')
-                    setSport('All Sports')
-                    setAvailability('Any Availability')
-                    setSortBy('Top Rated')
-                  }}
-                >
-                  Clear Filter
-                </button>
-              </div>
+              <p className="turf-results-count">{filteredTurfs.length} turf{filteredTurfs.length !== 1 ? 's' : ''} found</p>
             </section>
 
             <div className="card-list">

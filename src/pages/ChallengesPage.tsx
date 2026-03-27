@@ -54,6 +54,7 @@ export default function ChallengesPage() {
       <div className="subpage-hero challenges-hero">
         <h1>Challenges</h1>
         <p>Compete in sports challenges, win prizes, and climb leaderboards.</p>
+        <button className="hero-create-btn" type="button">+ Create Challenge</button>
       </div>
       <div className="subpage-content">
         <div className="card-list">

@@ -40,6 +40,7 @@ export default function TeamsPage() {
       <div className="subpage-hero teams-hero">
         <h1>Teams</h1>
         <p>Browse teams, view squads, and follow your favorite clubs.</p>
+        <button className="hero-create-btn" type="button">+ Create Team</button>
       </div>
       <div className="subpage-content">
         <div className="card-list">

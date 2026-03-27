@@ -39,6 +39,7 @@ export default function PlayerProfilesPage() {
       <div className="subpage-hero profiles-hero">
         <h1>Player Profiles</h1>
         <p>Discover talented players, view their stats, and connect for hiring or team building.</p>
+        <button className="hero-create-btn" type="button">+ Create Profile</button>
       </div>
       <div className="subpage-content">
         <div className="card-list">

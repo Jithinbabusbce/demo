@@ -38,6 +38,7 @@ export default function AuctionPage() {
       <div className="subpage-hero auction-hero">
         <h1>Auction</h1>
         <p>Host player auctions with bids, team budgets, and live updates.</p>
+        <button className="hero-create-btn" type="button">+ Start Auction</button>
       </div>
       <div className="subpage-content">
         <div className="card-list">

@@ -40,6 +40,7 @@ export default function TournamentPage() {
       <div className="subpage-hero tournament-hero">
         <h1>Tournaments</h1>
         <p>Create and manage tournaments with fixtures, standings, brackets, and live scores.</p>
+        <button className="hero-create-btn" type="button">+ Create Tournament</button>
       </div>
       <div className="subpage-content">
         <div className="card-list">

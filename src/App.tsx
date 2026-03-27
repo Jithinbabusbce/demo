@@ -4,6 +4,21 @@ import cricketHero from './assets/cricket.png'
 import gullyWorldLogo from './assets/logo.png'
 import './App.css'
 
+type Notification = {
+  id: number
+  author: string
+  action: 'mention' | 'tag' | 'like' | 'comment' | 'follow'
+  text: string
+  timestamp: string
+  read: boolean
+}
+
+type User = {
+  name: string
+  avatar: string
+  initials: string
+}
+
 import TournamentPage from './pages/TournamentPage'
 import ChallengesPage from './pages/ChallengesPage'
 import PlayerProfilesPage from './pages/PlayerProfilesPage'
@@ -16,6 +31,7 @@ import ContactPage from './pages/ContactPage'
 import PricingPage from './pages/PricingPage'
 import TurfPartnerPage from './pages/TurfPartnerPage'
 import LoginPage from './pages/LoginPage.tsx'
+import FeedPage from './pages/FeedPage'
 import { events } from './pages/EventsPage'
 import { challenges } from './pages/ChallengesPage'
 import { players } from './pages/PlayerProfilesPage'
@@ -78,7 +94,7 @@ const platformFeatures = [
   { id: '06', icon: '🛡️', title: 'Team Pages', desc: 'Manage rosters, share stories, and rally your fan base.', path: '/teams', btn: 'Explore Teams' },
   { id: '07', icon: '🔨', title: 'Player Auction', desc: 'Run a live auction, set budgets, and draft your dream team.', path: '/auction', btn: 'Open Auction' },
   { id: '08', icon: '🛒', title: 'Sports Store', desc: 'Kit up with licensed gear, jerseys, and sports accessories.', path: '/store', btn: 'Visit Store' },
-  { id: '09', icon: '🗺️', title: 'List Your Turf', desc: 'Register your ground and start receiving booking requests.', path: '/turf-partner', btn: 'Register Turf' },
+  { id: '09', icon: '🗺️', title: 'Find a Turf', desc: 'Discover and book sports turfs near you, or register your own.', path: '/turf-partner', btn: 'Find Turf' },
   { id: '10', icon: '💬', title: 'Community', desc: 'Connect with players, coaches, and organizers near you.', path: '/contact', btn: 'Join Now' },
 ]
 
@@ -117,11 +133,13 @@ function AppStoreBadges({ compact = false }: { compact?: boolean }) {
   )
 }
 
-function Header() {
+function Header({ user, notifications, setNotifications, onLogout }: { user: User | null, notifications: Notification[], setNotifications: (n: Notification[]) => void, onLogout: () => void }) {
   const [city, setCity] = useState('Bangalore')
   const [locationMenuOpen, setLocationMenuOpen] = useState(false)
   const [locationInput, setLocationInput] = useState('Bangalore')
   const [isLocating, setIsLocating] = useState(false)
+  const [notificationMenuOpen, setNotificationMenuOpen] = useState(false)
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
   const suggestedCities = ['Bangalore', 'Mumbai', 'Delhi', 'Hyderabad', 'Chennai', 'Pune']
   const filteredCities = suggestedCities.filter((item) => item.toLowerCase().includes(locationInput.toLowerCase()))
@@ -184,13 +202,27 @@ function Header() {
     )
   }
 
+  function markNotificationsAsRead() {
+    const updated = notifications.map(n => ({ ...n, read: true }))
+    setNotifications(updated)
+    localStorage.setItem('gullyworld-notifications', JSON.stringify(updated))
+  }
+
+  function clearNotifications() {
+    setNotifications([])
+    localStorage.removeItem('gullyworld-notifications')
+  }
+
+  const unreadCount = notifications.filter(n => !n.read).length
+
   return (
     <>
       <div className="announcement-bar">
         <p>Gully World helps players get hired, run tournaments, create events, and grow sports communities.</p>
       </div>
 
-      <header className="topbar">
+      <div className="topbar-sticky-wrapper">
+        <header className="topbar">
         <div className="topbar-left">
           <Link className="brand-block" to="/" aria-label="Gully World home">
             <img className="brand-logo" src={gullyWorldLogo} alt="Gully World logo" />
@@ -264,8 +296,11 @@ function Header() {
           <Link className="nav-plain-link" to="/marketplace">
             Talent Hub
           </Link>
+          <Link className="nav-plain-link" to="/feed">
+            Community
+          </Link>
           <Link className="nav-plain-link" to="/turf-partner">
-            List Your Turf
+            Find a Turf
           </Link>
           <Link className="nav-plain-link" to="/contact">
             Contact
@@ -276,10 +311,125 @@ function Header() {
         </nav>
 
         <div className="topbar-actions">
-          <Link className="header-secondary-link" to="/pricing">Pricing</Link>
-          <Link className="header-link" to="/login">Login / Signup</Link>
+          {user ? (
+            <>
+              {/* Notification Bell */}
+              <div className="notification-button-wrapper">
+                <button
+                  className="notification-bell"
+                  type="button"
+                  onClick={() => {
+                    setNotificationMenuOpen(!notificationMenuOpen)
+                    if (!notificationMenuOpen) markNotificationsAsRead()
+                  }}
+                  aria-label="View notifications"
+                >
+                  <svg className="bell-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V2c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 3.36 6 5.92 6 9v5l-2 2v1h16v-1l-2-2z"/>
+                  </svg>
+                  {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+                </button>
+                {notificationMenuOpen && (
+                  <div className="notification-menu" role="dialog" aria-label="Notifications">
+                    <div className="notification-menu-header">
+                      <h4>Notifications</h4>
+                      {notifications.length > 0 && (
+                        <button
+                          className="notification-clear-btn"
+                          type="button"
+                          onClick={clearNotifications}
+                          aria-label="Clear all notifications"
+                        >
+                          Clear all
+                        </button>
+                      )}
+                    </div>
+                    <div className="notification-menu-list">
+                      {notifications.length === 0 ? (
+                        <div className="notification-empty">
+                          <p>No notifications yet</p>
+                          <span>You're all caught up!</span>
+                        </div>
+                      ) : (
+                        notifications.map((notif) => (
+                          <div key={notif.id} className={`notification-item${!notif.read ? ' unread' : ''}`}>
+                            <span className="notification-icon">
+                              {notif.action === 'mention' && '👤'}
+                              {notif.action === 'tag' && '🏷️'}
+                              {notif.action === 'like' && '👍'}
+                              {notif.action === 'comment' && '💬'}
+                              {notif.action === 'follow' && '✨'}
+                            </span>
+                            <div className="notification-content">
+                              <strong>{notif.author}</strong>
+                              <p>{notif.text}</p>
+                              <small>{notif.timestamp}</small>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Profile Avatar */}
+              <div className="profile-button-wrapper">
+                <button
+                  className="profile-avatar-btn"
+                  type="button"
+                  onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+                  aria-label="User profile menu"
+                  title={user.name}
+                >
+                  <div className="profile-avatar" style={{ background: user.avatar }}>
+                    {user.initials}
+                  </div>
+                </button>
+                {profileMenuOpen && (
+                  <div className="profile-menu" role="dialog" aria-label="Profile menu">
+                    <div className="profile-menu-header">
+                      <div className="profile-menu-user">
+                        <div className="profile-avatar-large" style={{ background: user.avatar }}>
+                          {user.initials}
+                        </div>
+                        <div>
+                          <strong>{user.name}</strong>
+                          <span>Gully World Member</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile-menu-links">
+                      <Link to="/players" className="profile-menu-link">
+                        👤 My Profile
+                      </Link>
+                      <Link to="/feed" className="profile-menu-link">
+                        📰 My Community
+                      </Link>
+                      <button
+                        type="button"
+                        className="profile-menu-link logout-btn"
+                        onClick={() => {
+                          onLogout()
+                          setProfileMenuOpen(false)
+                        }}
+                      >
+                        🚪 Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              <Link className="header-secondary-link" to="/pricing">Pricing</Link>
+              <Link className="header-link" to="/login">Login / Signup</Link>
+            </>
+          )}
         </div>
       </header>
+      </div>
     </>
   )
 }
@@ -465,14 +615,6 @@ function HomePage() {
               <Link key={item.label} className="quick-access-chip" to={item.path}>{item.label}</Link>
             ))}
           </div>
-          <div className="stat-strip" id="stats">
-            {stats.map((card) => (
-              <article className="stat-card" key={card.label}>
-                <strong>{card.value}</strong>
-                <span>{card.label}</span>
-              </article>
-            ))}
-          </div>
         </div>
 
         <div className="hero-stage" aria-label="Cricket app hero image and live widgets">
@@ -520,6 +662,80 @@ function HomePage() {
         </div>
       </section>
 
+      <div className="stat-strip" id="stats">
+        {stats.map((card) => (
+          <article className="stat-card" key={card.label}>
+            <strong>{card.value}</strong>
+            <span>{card.label}</span>
+          </article>
+        ))}
+      </div>
+
+      {/* Live Sports Ticker - IPL style */}
+      <div className="sports-ticker" aria-label="Live sports ticker">
+        <div className="ticker-track">
+          <span className="ticker-item">🏏 IPL 2026 Season is LIVE</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">⚽ Premier League week 34 highlights</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🏸 India Open Badminton — Quarter Finals today</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🏀 NBA Playoff bracket updated</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🔥 {liveEventsCount + liveChallengesCount} live events on Gully World right now</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🏏 IPL 2026 Season is LIVE</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">⚽ Premier League week 34 highlights</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🏸 India Open Badminton — Quarter Finals today</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🏀 NBA Playoff bracket updated</span>
+          <span className="ticker-dot">•</span>
+          <span className="ticker-item">🔥 {liveEventsCount + liveChallengesCount} live events on Gully World right now</span>
+        </div>
+      </div>
+
+      {/* Trending Now Section */}
+      <section className="trending-strip">
+        <div className="trending-inner">
+          <div className="trending-heading">
+            <span className="trending-badge">🔥 Trending</span>
+            <h3>What's hot on Gully World</h3>
+          </div>
+          <div className="trending-cards">
+            <Link to="/events" className="trending-card">
+              <span className="trending-card-icon">⚡</span>
+              <div>
+                <strong>{liveEventsCount} Live Events</strong>
+                <p>Happening right now in {activeCity}</p>
+              </div>
+            </Link>
+            <Link to="/challenges" className="trending-card">
+              <span className="trending-card-icon">🎯</span>
+              <div>
+                <strong>{liveChallengesCount} Active Challenges</strong>
+                <p>Compete and climb leaderboards</p>
+              </div>
+            </Link>
+            <Link to="/players" className="trending-card">
+              <span className="trending-card-icon">🏆</span>
+              <div>
+                <strong>{cityPlayersCount} Players Available</strong>
+                <p>Ready to hire near {activeCity}</p>
+              </div>
+            </Link>
+            <Link to="/auction" className="trending-card">
+              <span className="trending-card-icon">🔨</span>
+              <div>
+                <strong>Auctions Open</strong>
+                <p>Draft your dream team today</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="feature-band" id="features">
         <div className="feature-band-top">
           <div className="section-heading">
@@ -562,6 +778,31 @@ function HomePage() {
             <p>Integrate your ground so teams can book slots directly when hosting challenges, leagues, and tournaments.</p>
           </div>
           <Link className="primary-action" to="/turf-partner">Register Turf Free</Link>
+        </div>
+      </section>
+
+      {/* Sponsor / Partner Strip - IPL style */}
+      <section className="sponsor-strip" aria-label="Partners and sponsors">
+        <p className="sponsor-strip-label">Trusted by sports brands</p>
+        <div className="sponsor-strip-track">
+          <div className="sponsor-strip-scroll">
+            <span className="sponsor-logo-text">🏏 CricZone</span>
+            <span className="sponsor-logo-text">⚽ KickStart</span>
+            <span className="sponsor-logo-text">🏸 ShuttlePro</span>
+            <span className="sponsor-logo-text">🥊 FightClub</span>
+            <span className="sponsor-logo-text">🏀 DunkCity</span>
+            <span className="sponsor-logo-text">🏑 HockeyEdge</span>
+            <span className="sponsor-logo-text">🎾 AceServe</span>
+            <span className="sponsor-logo-text">🏐 VolleyNet</span>
+            <span className="sponsor-logo-text">🏏 CricZone</span>
+            <span className="sponsor-logo-text">⚽ KickStart</span>
+            <span className="sponsor-logo-text">🏸 ShuttlePro</span>
+            <span className="sponsor-logo-text">🥊 FightClub</span>
+            <span className="sponsor-logo-text">🏀 DunkCity</span>
+            <span className="sponsor-logo-text">🏑 HockeyEdge</span>
+            <span className="sponsor-logo-text">🎾 AceServe</span>
+            <span className="sponsor-logo-text">🏐 VolleyNet</span>
+          </div>
         </div>
       </section>
 
@@ -728,20 +969,22 @@ function SubpageSearchBar() {
     <section className="subpage-search-wrap" aria-label="Search and filter">
       <div className="subpage-search-bar">
         <div className="subpage-search-input-row">
-          <svg className="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5-1.48 1.48-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/>
-          </svg>
-          <input
-            className="subpage-search-input"
-            type="search"
-            placeholder={config.placeholder}
-            aria-label="Search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') applyFilters({ q: query })
-            }}
-          />
+          <div className="subpage-search-box">
+            <svg className="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5-1.48 1.48-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/>
+            </svg>
+            <input
+              className="subpage-search-input"
+              type="search"
+              placeholder={config.placeholder}
+              aria-label="Search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') applyFilters({ q: query })
+              }}
+            />
+          </div>
           <button className="subpage-search-button" type="button" onClick={() => applyFilters({ q: query })}>Search</button>
           <button
             className="subpage-clear-filter-btn"
@@ -914,11 +1157,68 @@ function SupportChatWidget() {
 }
 
 function App() {
+  const [user, setUser] = useState<User | null>(null)
+  const [notifications, setNotifications] = useState<Notification[]>([])
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('gullyworld-user')
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser))
+      } catch {
+        setUser(null)
+      }
+    }
+
+    const savedNotifications = localStorage.getItem('gullyworld-notifications')
+    if (savedNotifications) {
+      try {
+        setNotifications(JSON.parse(savedNotifications))
+      } catch {
+        setNotifications([])
+      }
+    }
+  }, [])
+
+  function addNotification(author: string, action: Notification['action'], text: string) {
+    const newNotification: Notification = {
+      id: Date.now(),
+      author,
+      action,
+      text,
+      timestamp: 'Just now',
+      read: false,
+    }
+    const updated = [newNotification, ...notifications].slice(0, 20)
+    setNotifications(updated)
+    localStorage.setItem('gullyworld-notifications', JSON.stringify(updated))
+  }
+
+  function loginUser(name: string) {
+    const initials = name
+      .split(' ')
+      .map((n) => n.charAt(0).toUpperCase())
+      .join('')
+      .slice(0, 2)
+    const newUser: User = {
+      name,
+      avatar: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+      initials,
+    }
+    setUser(newUser)
+    localStorage.setItem('gullyworld-user', JSON.stringify(newUser))
+  }
+
+  function logoutUser() {
+    setUser(null)
+    localStorage.removeItem('gullyworld-user')
+  }
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <div className="page-shell">
-        <Header />
+        <Header user={user} notifications={notifications} setNotifications={setNotifications} onLogout={logoutUser} />
         <SubpageSearchBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -929,11 +1229,12 @@ function App() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/auction" element={<AuctionPage />} />
           <Route path="/marketplace" element={<MarketplacePage />} />
+          <Route path="/feed" element={<FeedPage isLoggedIn={Boolean(user)} onAddNotification={addNotification} />} />
           <Route path="/store" element={<StorePage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/turf-partner" element={<TurfPartnerPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage onLogin={loginUser} />} />
         </Routes>
         <SupportChatWidget />
         <Footer />

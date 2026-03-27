@@ -10,14 +10,19 @@ function generateCaptcha() {
 
 export default function ContactPage() {
   const selectRef = useRef<HTMLSelectElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [captcha, setCaptcha] = useState(generateCaptcha)
   const [captchaInput, setCaptchaInput] = useState('')
   const [captchaError, setCaptchaError] = useState(false)
+  const [captchaPassed, setCaptchaPassed] = useState(false)
+  const [fileName, setFileName] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const refreshCaptcha = useCallback(() => {
     setCaptcha(generateCaptcha())
     setCaptchaInput('')
     setCaptchaError(false)
+    setCaptchaPassed(false)
   }, [])
 
   useEffect(() => {
@@ -27,15 +32,40 @@ export default function ContactPage() {
     }
   }, [])
 
+  function handleCaptchaChange(value: string) {
+    setCaptchaInput(value)
+    setCaptchaError(false)
+    if (parseInt(value, 10) === captcha.answer) {
+      setCaptchaPassed(true)
+    } else {
+      setCaptchaPassed(false)
+    }
+  }
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (file) {
+      const allowed = ['image/jpeg', 'image/png', 'image/gif']
+      if (!allowed.includes(file.type)) {
+        setFileName('')
+        if (fileInputRef.current) fileInputRef.current.value = ''
+        return
+      }
+      setFileName(file.name)
+    } else {
+      setFileName('')
+    }
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (parseInt(captchaInput, 10) !== captcha.answer) {
+    if (!captchaPassed) {
       setCaptchaError(true)
-      refreshCaptcha()
       return
     }
     setCaptchaError(false)
-    // TODO: handle actual form submission
+    setSubmitted(true)
+    // TODO: handle actual form submission (no backend API yet — frontend only)
   }
 
   return (
@@ -66,36 +96,62 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="contact-form-card">
-              <h3>Send us a message</h3>
-              <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Your Name" className="form-input" />
-                <input type="email" placeholder="Your Email" className="form-input" />
-                <select ref={selectRef} className="form-input form-select" defaultValue="">
-                  <option value="" disabled>Select inquiry type</option>
-                  <option value="support">Support &amp; Help</option>
-                  <option value="advertise">Advertise with Us</option>
-                  <option value="sponsor">Sponsorship &amp; Partnership</option>
-                  <option value="events">Events &amp; Tournaments</option>
-                  <option value="hiring">Player Hiring &amp; Talent</option>
-                  <option value="issues">Report an Issue</option>
-                  <option value="other">Other</option>
-                </select>
-                <textarea placeholder="Your Message" className="form-input form-textarea" rows={5}></textarea>
-                <div className="captcha-row">
-                  <span className="captcha-challenge">🔒 What is <strong>{captcha.question}</strong> ?</span>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    className="form-input captcha-input"
-                    placeholder="Answer"
-                    value={captchaInput}
-                    onChange={(e) => setCaptchaInput(e.target.value)}
-                  />
-                  <button type="button" className="captcha-refresh" onClick={refreshCaptcha} title="New question">↻</button>
+              {submitted ? (
+                <div className="contact-success">
+                  <span className="contact-success-icon">✅</span>
+                  <h3>Message Sent!</h3>
+                  <p>Thank you for reaching out. We'll get back to you shortly.</p>
+                  <button type="button" className="card-action-btn" onClick={() => { setSubmitted(false); refreshCaptcha(); setFileName('') }}>Send Another</button>
                 </div>
-                {captchaError && <p className="captcha-error">Incorrect answer. Please try again.</p>}
-                <button type="submit" className="card-action-btn">Send Message</button>
-              </form>
+              ) : (
+                <>
+                  <h3>Submit Query</h3>
+                  <form onSubmit={handleSubmit}>
+                    <input type="text" placeholder="Name" className="form-input" required />
+                    <input type="email" placeholder="Email Id" className="form-input" required />
+                    <select ref={selectRef} className="form-input form-select" defaultValue="">
+                      <option value="" disabled>Subject</option>
+                      <option value="support">Support &amp; Help</option>
+                      <option value="advertise">Advertise with Us</option>
+                      <option value="sponsor">Sponsorship &amp; Partnership</option>
+                      <option value="events">Events &amp; Tournaments</option>
+                      <option value="hiring">Player Hiring &amp; Talent</option>
+                      <option value="issues">Report an Issue</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <textarea placeholder="Message" className="form-input form-textarea" rows={5} required></textarea>
+                    <div className="file-upload-row">
+                      <label className="file-upload-label">
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept=".jpg,.jpeg,.png,.gif"
+                          className="file-upload-input"
+                          onChange={handleFileChange}
+                        />
+                        <span className="file-upload-btn">📎 Upload screenshot</span>
+                        <span className="file-upload-hint">(jpg, png, gif) optional</span>
+                      </label>
+                      {fileName && <span className="file-upload-name">{fileName}</span>}
+                    </div>
+                    <div className="captcha-row">
+                      <span className="captcha-challenge">🔒 What is <strong>{captcha.question}</strong> ?</span>
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        className="form-input captcha-input"
+                        placeholder="Answer"
+                        value={captchaInput}
+                        onChange={(e) => handleCaptchaChange(e.target.value)}
+                      />
+                      <button type="button" className="captcha-refresh" onClick={refreshCaptcha} title="New question">↻</button>
+                      {captchaPassed && <span className="captcha-pass">✓</span>}
+                    </div>
+                    {captchaError && <p className="captcha-error">Please solve the captcha correctly to submit.</p>}
+                    <button type="submit" className="card-action-btn" disabled={!captchaPassed}>Submit</button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

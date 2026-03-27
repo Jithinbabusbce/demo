@@ -55,6 +55,7 @@ export default function EventsPage() {
       <div className="subpage-hero events-hero">
         <h1>Events</h1>
         <p>Create events, manage RSVPs, and coordinate venues — all in one place.</p>
+        <button className="hero-create-btn" type="button">+ Create Event</button>
       </div>
       <div className="subpage-content">
         <div className="card-list">

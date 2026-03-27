@@ -1,119 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
-  <!-- White badge background -->
-  <rect width="200" height="240" rx="16" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" role="img" aria-label="The Gully Amateur Sports Network logo">
+  <defs>
+    <linearGradient id="roadGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff9d2f"/>
+      <stop offset="1" stop-color="#f57c00"/>
+    </linearGradient>
+  </defs>
 
-  <!-- ==================== SWOOSH BRUSH STROKES ==================== -->
-  <!-- Main cyan swoosh arc (behind player) -->
-  <path d="M28,155 C5,120 8,55 55,25 C90,2 150,0 178,32 C198,56 196,95 180,125"
-        fill="none" stroke="#22D3EE" stroke-width="18" stroke-linecap="round" opacity="0.75"/>
-  <!-- Cyan swoosh inner highlight -->
-  <path d="M34,148 C14,118 16,58 58,30 C88,10 142,6 168,30"
-        fill="none" stroke="#67E8F9" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+  <g transform="translate(88 18)">
+    <path d="M122 0C92 0 51 19 25 56c-20 28-26 64-19 110 14 83 63 143 116 175 53-32 102-92 116-175 8-46 1-82-19-110C193 19 152 0 122 0z" fill="#00588c"/>
+    <path d="M122 13c-26 0-63 17-86 49-18 25-23 57-16 98 12 74 56 129 102 159 46-30 90-85 102-159 7-41 2-73-16-98-23-32-60-49-86-49z" fill="#ffffff"/>
+    <path d="M122 29c-22 0-55 14-76 41-16 22-20 50-14 87 11 66 50 114 90 141 40-27 79-75 90-141 6-37 2-65-14-87-21-27-54-41-76-41z" fill="none" stroke="#ff7a00" stroke-width="8"/>
 
-  <!-- Purple accent swoosh (lower, crossing) -->
-  <path d="M30,162 C15,135 20,80 50,48"
-        fill="none" stroke="#8B5CF6" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
-  <path d="M165,38 C182,65 184,108 170,140"
-        fill="none" stroke="#8B5CF6" stroke-width="5" stroke-linecap="round" opacity="0.35"/>
+    <circle cx="122" cy="64" r="20" fill="#f57c00"/>
+    <path d="M102 64h40M122 44v40M108 52c10 7 20 7 28 0M108 76c8-7 18-7 28 0" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linecap="round"/>
 
-  <!-- Small brush splash streaks -->
-  <path d="M42,158 C36,155 28,150 24,145" fill="none" stroke="#22D3EE" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
-  <path d="M175,30 C180,22 182,14 180,8" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+    <circle cx="122" cy="114" r="24" fill="#0a5f8b"/>
+    <circle cx="122" cy="114" r="21" fill="#ffffff"/>
+    <polygon points="122,94 130,107 145,107 133,117 138,132 122,123 106,132 111,117 99,107 114,107" fill="#0a5f8b"/>
 
-  <!-- Accent dots -->
-  <circle cx="22" cy="140" r="4" fill="#8B5CF6" opacity="0.55"/>
-  <circle cx="178" cy="130" r="3" fill="#22D3EE" opacity="0.5"/>
-  <circle cx="170" cy="18" r="3.5" fill="#8B5CF6" opacity="0.4"/>
-  <circle cx="40" cy="168" r="3" fill="#22D3EE" opacity="0.45"/>
+    <g stroke="#0a5f8b" stroke-width="4" fill="none" stroke-linecap="round">
+      <circle cx="78" cy="82" r="16"/>
+      <circle cx="166" cy="82" r="16"/>
+      <path d="M62 108l43 43"/>
+      <path d="M182 108l-43 43"/>
+    </g>
 
-  <!-- ==================== PLAYER SILHOUETTE ==================== -->
-  <!-- All parts filled #0F172A, overlapping shapes merge into one solid silhouette -->
-  <g fill="#0F172A">
-    <!-- Head -->
-    <ellipse cx="96" cy="36" rx="10" ry="11"/>
-
-    <!-- Neck -->
-    <rect x="90" y="44" width="12" height="10" rx="3"/>
-
-    <!-- Torso (leaning forward/left — trapezoidal organic shape) -->
-    <path d="
-      M80,50 C78,50 74,54 72,60
-      L70,72 L74,86 L80,90
-      L112,90 L118,86 L120,72
-      C120,60 118,54 114,50
-      Z"/>
-
-    <!-- LEFT ARM (front arm reaching forward-down to stick grip) -->
-    <path d="
-      M80,54 C74,60 66,68 58,76
-      L48,86 L44,82
-      C52,72 62,62 72,52 Z"/>
-    <!-- Left forearm to hand -->
-    <path d="
-      M50,84 C46,88 42,92 38,96
-      L34,92 C38,86 44,80 48,78 Z"/>
-
-    <!-- RIGHT ARM (back arm also reaching to stick, slightly behind) -->
-    <path d="
-      M100,54 C92,64 82,74 72,84
-      L64,94 L60,90
-      C70,78 80,66 90,56 Z"/>
-    <!-- Right forearm/hand -->
-    <path d="
-      M66,92 C62,96 56,102 52,106
-      L48,102 C54,96 60,90 64,88 Z"/>
-
-    <!-- LEFT LEG (front leg, lunging forward-left, deep knee bend) -->
-    <!-- Thigh -->
-    <path d="
-      M84,86 C80,94 72,104 64,114
-      L54,126 L62,130
-      C68,120 76,108 82,98
-      L92,90 Z"/>
-    <!-- Shin -->
-    <path d="
-      M56,124 C50,134 44,142 38,150
-      L34,156 L44,158
-      C48,150 54,140 60,130 Z"/>
-    <!-- Foot -->
-    <path d="M28,154 L48,154 C50,154 50,162 48,162 L28,162 C26,162 26,154 28,154 Z"/>
-
-    <!-- RIGHT LEG (back leg, extended behind-right, pushing off) -->
-    <!-- Thigh -->
-    <path d="
-      M108,86 C114,96 122,106 130,114
-      L140,124 L134,128
-      C126,118 118,108 112,98
-      L102,90 Z"/>
-    <!-- Shin -->
-    <path d="
-      M138,122 C144,132 150,140 156,148
-      L160,154 L150,156
-      C146,148 140,138 134,128 Z"/>
-    <!-- Foot -->
-    <path d="M148,152 L168,152 C170,152 170,160 168,160 L148,160 C146,160 146,152 148,152 Z"/>
-
-    <!-- HOCKEY STICK (from hand area down-left to blade on ground) -->
-    <!-- Shaft -->
-    <path d="
-      M40,94 L36,98
-      L18,146 L14,156
-      L20,158 L24,148
-      L42,100 Z"/>
-    <!-- Blade (J-hook at bottom) -->
-    <path d="
-      M14,154 C10,158 6,162 8,166
-      C10,170 16,170 22,168
-      L28,166 C24,164 18,164 14,164
-      C12,162 12,158 14,154 Z"/>
-
-    <!-- Ball -->
-    <circle cx="16" cy="172" r="5.5"/>
+    <path d="M96 200c30-41 54-69 87-89l5 8c-26 15-49 38-79 80-3 4-8 5-12 2s-5-8-1-11z" fill="#0a5f8b"/>
+    <path d="M92 246c-12 0-20-10-17-22 6-23 22-44 45-63 22-18 50-34 80-48l7 14c-29 14-55 30-75 45-20 16-34 34-40 53h103v16H92z" fill="url(#roadGlow)"/>
+    <path d="M125 168l9 6-5 8-9-6zM113 187l9 6-5 8-9-6zM101 206l9 6-5 8-9-6z" fill="#ffffff"/>
   </g>
 
-  <!-- ==================== TEXT ==================== -->
-  <text x="100" y="200" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif"
-        font-size="28" font-weight="900" letter-spacing="2" fill="#0F172A">GULLY</text>
-  <text x="100" y="224" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif"
-        font-size="18" font-weight="800" letter-spacing="4" fill="#16A34A">WORLD</text>
+  <g text-anchor="middle" font-family="Segoe UI, Arial, sans-serif">
+    <text x="210" y="366" font-size="29" font-weight="700" fill="#0a5f8b">THE GULLY</text>
+    <text x="210" y="396" font-size="18" font-weight="700" letter-spacing="1.8" fill="#f57c00">AMATEUR SPORTS NETWORK</text>
+  </g>
 </svg>

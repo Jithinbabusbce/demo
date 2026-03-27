@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import cricketHero from './assets/cricket.png'
-import gullyWorldLogo from './assets/gully-world-logo.svg'
+import gullyWorldLogo from './assets/logo.png'
 import './App.css'
 
 import TournamentPage from './pages/TournamentPage'
@@ -82,13 +82,12 @@ const platformFeatures = [
   { id: '10', icon: '💬', title: 'Community', desc: 'Connect with players, coaches, and organizers near you.', path: '/contact', btn: 'Join Now' },
 ]
 
-/* Brand wordmark: GULLY WORLD — clean 2-color athletic type */
 function BrandWordmark({ size = 'default' }: { size?: 'default' | 'footer' }) {
   const cls = size === 'footer' ? 'brand-wordmark brand-wordmark-footer' : 'brand-wordmark';
   return (
     <span className={cls} aria-label="Gully World">
-      <span className="wm-gully">GULLY</span>
-      <span className="wm-world">WORLD</span>
+      <span className="wm-gully">Gully</span>
+      <span className="wm-world">World</span>
     </span>
   )
 }
@@ -341,7 +340,6 @@ function Footer() {
           <div className="footer-col footer-brand-col">
             <Link to="/" className="footer-brand-link">
               <img className="footer-logo" src={gullyWorldLogo} alt="Gully World" />
-              <BrandWordmark size="footer" />
             </Link>
             <p className="footer-tagline">The sports network for modern players</p>
             <div className="footer-social">

@@ -179,7 +179,7 @@
 .brand-block {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
   transition: opacity 0.18s ease;
 }
@@ -189,10 +189,9 @@
 }
 
 .brand-logo {
-  width: 44px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  height: 56px;
+  width: auto;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -200,34 +199,34 @@
 .brand-wordmark {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.3em;
+  gap: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.wm-gully,
+.wm-world {
+  font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   line-height: 1;
 }
 
-/* GULLY — dark navy bold */
 .wm-gully {
-  font-family: var(--heading);
-  font-size: 1.55rem;
-  font-weight: 900;
-  color: #0f172a;
-  letter-spacing: 0.06em;
+  color: #0a3d62;
 }
 
-/* WORLD — green bold */
 .wm-world {
-  font-family: var(--heading);
-  font-size: 1.55rem;
-  font-weight: 900;
-  color: #16a34a;
-  letter-spacing: 0.06em;
+  color: #8B0000;
 }
 
-/* Footer variant — white text on dark bg */
+/* Footer variant — bright on dark bg */
 .brand-wordmark-footer .wm-gully {
   color: #FFFFFF;
 }
 .brand-wordmark-footer .wm-world {
-  color: #22C55E;
+  color: #f59e0b;
 }
 
 .sr-only {
@@ -622,17 +621,23 @@
 
 .hero-store-inline {
   margin-top: 10px;
+  max-width: 100%;
 }
 
 .hero-store-inline .store-badge-list {
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 10px;
+  max-width: 100%;
 }
 
 .hero-store-inline .store-badge {
   min-height: 44px;
   padding: 0 14px;
   border-radius: 16px;
+  flex: 1 1 180px;
+  min-width: 0;
+  justify-content: center;
 }
 
 .hero-store-inline .store-icon {
@@ -1445,13 +1450,20 @@
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  transition: opacity 0.18s ease;
+}
+
+.footer-brand-link:hover {
+  opacity: 0.85;
 }
 
 .footer-logo {
-  width: 38px;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(245, 166, 35, 0.2);
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+  border-radius: 8px;
 }
 
 .footer-brand-text,
@@ -1462,11 +1474,13 @@
 
 /* Footer wordmark sizing */
 .footer-brand-link .brand-wordmark {
-  gap: 0.25em;
+  gap: 0;
 }
-.footer-brand-link .wm-gully,
+.footer-brand-link .wm-gully {
+  font-size: 1.25rem;
+}
 .footer-brand-link .wm-world {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
 }
 
 .footer-tagline {
@@ -3355,7 +3369,7 @@
   }
 
   .store-badge {
-    width: auto;
+    width: min(100%, 280px);
     justify-content: center;
   }
 
@@ -3443,18 +3457,19 @@
     border-radius: 12px;
   }
 
-  .brand-wordmark {
-    gap: 0.2em;
-  }
-
   .wm-gully,
   .wm-world {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .brand-logo {
-    width: 40px;
-    height: 40px;
+    height: 46px;
+    width: auto;
+  }
+
+  .footer-logo {
+    height: 50px;
+    width: auto;
   }
 
   .feature-showcase-layout {

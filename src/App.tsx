@@ -476,13 +476,25 @@ function Footer() {
         </div>
         <div className="footer-top-band">
           <div className="footer-top-inner">
-            <div className="footer-top-copy">
-              <h2>Ready to dominate your sport?</h2>
-              <p>Events, tournaments, hiring, and community — one platform, zero limits.</p>
+            <div className="footer-trust-heading">
+              <h2>Trusted by sports brands</h2>
+              <p>Partners powering events, talent growth, and sports communities on Gully World.</p>
             </div>
-            <div className="footer-top-actions">
-              <Link className="footer-cta-primary" to="/events">Create Event</Link>
-              <Link className="footer-cta-secondary" to="/players">Hire Talent</Link>
+            <div className="footer-trust-track">
+              <div className="footer-trust-scroll">
+                <span className="footer-trust-item">🏏 CricZone</span>
+                <span className="footer-trust-item">⚽ KickStart</span>
+                <span className="footer-trust-item">🏸 ShuttlePro</span>
+                <span className="footer-trust-item">🥊 FightClub</span>
+                <span className="footer-trust-item">🏀 DunkCity</span>
+                <span className="footer-trust-item">🏑 HockeyEdge</span>
+                <span className="footer-trust-item">🎾 AceServe</span>
+                <span className="footer-trust-item">🏐 VolleyNet</span>
+                <span className="footer-trust-item">🏏 CricZone</span>
+                <span className="footer-trust-item">⚽ KickStart</span>
+                <span className="footer-trust-item">🏸 ShuttlePro</span>
+                <span className="footer-trust-item">🥊 FightClub</span>
+              </div>
             </div>
           </div>
         </div>
@@ -778,31 +790,6 @@ function HomePage() {
             <p>Integrate your ground so teams can book slots directly when hosting challenges, leagues, and tournaments.</p>
           </div>
           <Link className="primary-action" to="/turf-partner">Register Turf Free</Link>
-        </div>
-      </section>
-
-      {/* Sponsor / Partner Strip - IPL style */}
-      <section className="sponsor-strip" aria-label="Partners and sponsors">
-        <p className="sponsor-strip-label">Trusted by sports brands</p>
-        <div className="sponsor-strip-track">
-          <div className="sponsor-strip-scroll">
-            <span className="sponsor-logo-text">🏏 CricZone</span>
-            <span className="sponsor-logo-text">⚽ KickStart</span>
-            <span className="sponsor-logo-text">🏸 ShuttlePro</span>
-            <span className="sponsor-logo-text">🥊 FightClub</span>
-            <span className="sponsor-logo-text">🏀 DunkCity</span>
-            <span className="sponsor-logo-text">🏑 HockeyEdge</span>
-            <span className="sponsor-logo-text">🎾 AceServe</span>
-            <span className="sponsor-logo-text">🏐 VolleyNet</span>
-            <span className="sponsor-logo-text">🏏 CricZone</span>
-            <span className="sponsor-logo-text">⚽ KickStart</span>
-            <span className="sponsor-logo-text">🏸 ShuttlePro</span>
-            <span className="sponsor-logo-text">🥊 FightClub</span>
-            <span className="sponsor-logo-text">🏀 DunkCity</span>
-            <span className="sponsor-logo-text">🏑 HockeyEdge</span>
-            <span className="sponsor-logo-text">🎾 AceServe</span>
-            <span className="sponsor-logo-text">🏐 VolleyNet</span>
-          </div>
         </div>
       </section>
 

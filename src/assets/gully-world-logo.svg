@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- CANONICAL MARK: The Green G — Gully World -->
+  <!-- C-arc (thick ring with gap on right) -->
+  <path d="M52 15 A26 26 0 1 0 52 49 L43 41 A14 14 0 1 1 43 23 Z" fill="#15803d"/>
+  <!-- Horizontal bar of G -->
+  <path d="M34 27 L52 27 L52 37 L34 37 Z" fill="#15803d"/>
+  <!-- Gold championship accent -->
+  <circle cx="52" cy="15" r="3.5" fill="#D4AF37"/>
+</svg>

@@ -1,0 +1,104 @@
+/* ===== All @keyframes animations ===== */
+
+@keyframes announcementShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes stadiumLight {
+  0% { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.3); }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes stadiumGlowPulse {
+  0%, 100% {
+    box-shadow: 0 34px 80px rgba(22, 163, 74, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  50% {
+    box-shadow: 0 34px 90px rgba(22, 163, 74, 0.25), inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes trendingPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+}
+
+@keyframes sponsorScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes emojiFade {
+  from { opacity: 0.1; transform: scale(0.92); }
+  to   { opacity: 0.3; transform: scale(1.08); }
+}
+
+@keyframes slideInFeature {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes phoneGlide {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.5);
+  }
+}

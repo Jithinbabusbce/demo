@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- App Icon: Green rounded square + white G mark -->
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#15803d"/>
+  <!-- Subtle inner glow -->
+  <rect x="8" y="8" width="496" height="496" rx="104" fill="none" stroke="#0f6b2e" stroke-width="1" opacity="0.3"/>
+  <!-- White G mark (canonical paths scaled 5.3x, centered) -->
+  <g transform="translate(86, 76) scale(5.3125)">
+    <path d="M52 15 A26 26 0 1 0 52 49 L43 41 A14 14 0 1 1 43 23 Z" fill="#ffffff"/>
+    <path d="M34 27 L52 27 L52 37 L34 37 Z" fill="#ffffff"/>
+    <circle cx="52" cy="15" r="3.5" fill="#D4AF37"/>
+  </g>
+</svg>

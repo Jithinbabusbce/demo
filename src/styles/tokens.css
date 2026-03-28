@@ -1,0 +1,302 @@
+/* ============================================================
+   GULLY WORLD — Design Token System
+   ============================================================
+   Single source of truth for every visual primitive used
+   across the application.  Import this file FIRST so that
+   all other stylesheets can reference these tokens.
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     1. COLOR SCALES
+     ---------------------------------------------------------- */
+
+  /* --- Green (brand primary) --- */
+  --green-50:  #f0fdf4;
+  --green-100: #dcfce7;
+  --green-200: #bbf7d0;
+  --green-300: #86efac;
+  --green-400: #4ade80;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --green-800: #166534;
+  --green-900: #14532d;
+  --green-950: #052e16;
+
+  /* Extra brand greens found in App.css */
+  --green-emerald-400: #34d399;
+  --green-emerald-300: #6ee7b7;
+  --green-emerald-500: #10b981;
+  --green-emerald-600: #059669;
+  --green-emerald-800: #065f46;
+  --green-emerald-900: #064e3b;
+  --green-deep:        #0d5a2a;
+
+  /* --- Blue --- */
+  --blue-50:  #eef4ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+  --blue-950: #0a3d62;
+
+  /* --- Red --- */
+  --red-50:  #fef2f2;
+  --red-100: #FEE2E2;
+  --red-200: #fecaca;
+  --red-300: #fca5a5;
+  --red-400: #f87171;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
+  --red-800: #991b1b;
+  --red-900: #7f1d1d;
+  --red-deep: #8B0000;
+
+  /* --- Slate / Gray --- */
+  --slate-50:  #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* --- Amber / Orange --- */
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+  --orange-500: #f97316;
+
+  /* --- Cricket Gold (trophy / championship accent) --- */
+  --gold-300: #fcd34d;
+  --gold-400: #fbbf24;
+  --gold-500: #d4a012;
+  --gold-600: #b8860b;
+  --gold-glow: 0 0 20px rgba(251, 191, 36, 0.3);
+
+  /* --- Surfaces --- */
+  --white:          #ffffff;
+  --white-90:       rgba(255, 255, 255, 0.90);
+  --white-84:       rgba(255, 255, 255, 0.84);
+
+  /* --- Semantic color aliases (migrated from index.css :root) --- */
+  --page-bg:       var(--blue-50);          /* #eef4ff */
+  --page-bg-deep:  var(--blue-100);         /* #dbeafe */
+  --panel:         var(--white-84);         /* rgba(255,255,255,0.84) */
+  --line:          rgba(30, 41, 59, 0.14);  /* slate-800 @ 14 % */
+  --heading-text:  var(--slate-900);        /* #0f172a */
+  --body-text:     #1f2937;                 /* gray-800 */
+  --muted-text:    var(--slate-500);        /* #64748b */
+  --accent-strong: var(--blue-700);         /* #1d4ed8 */
+
+  /* Semantic: status */
+  --color-success:  var(--green-600);
+  --color-warning:  var(--amber-500);
+  --color-danger:   var(--red-500);
+  --color-info:     var(--blue-500);
+
+  /* ----------------------------------------------------------
+     2. TYPOGRAPHY
+     ---------------------------------------------------------- */
+
+  /* Font families */
+  --heading: 'DM Sans', 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --sans:    'Instrument Sans', 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:    'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Font size scale */
+  --text-2xs:  0.7rem;    /* 11.2 px */
+  --text-xs:   0.75rem;   /* 12 px   */
+  --text-sm:   0.84rem;   /* ~13.4 px */
+  --text-base: 1rem;      /* 16 px   */
+  --text-md:   1.05rem;   /* ~16.8 px */
+  --text-lg:   1.2rem;    /* 19.2 px */
+  --text-xl:   1.35rem;   /* 21.6 px */
+  --text-2xl:  1.5rem;    /* 24 px   */
+  --text-3xl:  2rem;      /* 32 px   */
+  --text-4xl:  3rem;      /* 48 px   */
+
+  /* Intermediate sizes found in App.css */
+  --text-xs-plus:  0.78rem;
+  --text-sm-minus: 0.8rem;
+  --text-sm-alt:   0.82rem;
+  --text-sm-mid:   0.83rem;
+  --text-sm-plus:  0.88rem;
+  --text-body-sm:  0.9rem;
+  --text-body-alt: 0.92rem;
+  --text-body-mid: 0.95rem;
+  --text-base-plus: 1.02rem;
+  --text-md-alt:   1.1rem;
+  --text-lg-minus: 1.25rem;
+  --text-lg-alt:   1.28rem;
+  --text-xl-minus: 1.4rem;
+
+  /* Font weights */
+  --font-regular:  400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  /* Line heights */
+  --leading-none:    1;
+  --leading-tight:   1.05;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   2;
+
+  /* ----------------------------------------------------------
+     3. SPACING SCALE
+     ---------------------------------------------------------- */
+
+  --space-1:   4px;
+  --space-1-5: 6px;
+  --space-2:   8px;
+  --space-2-5: 10px;
+  --space-3:   12px;
+  --space-3-5: 14px;
+  --space-4:   16px;
+  --space-4-5: 18px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-7:   28px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-14:  56px;
+  --space-16:  64px;
+  --space-20:  80px;
+
+  /* ----------------------------------------------------------
+     4. BORDER RADIUS
+     ---------------------------------------------------------- */
+
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-3xl:  44px;
+  --radius-full: 999px;
+
+  /* ----------------------------------------------------------
+     5. SHADOWS
+     ---------------------------------------------------------- */
+
+  --shadow-xs:  0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-sm:  0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md:  0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-xl:  0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 16px 40px rgba(0, 0, 0, 0.14);
+  --shadow-3xl: 0 20px 40px rgba(0, 0, 0, 0.14);
+  --shadow-4xl: 0 24px 56px rgba(0, 0, 0, 0.16);
+
+  /* Semantic shadow alias (migrated from index.css) */
+  --soft-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+
+  /* Green glow variants (brand CTA / success emphasis) */
+  --glow-green-sm:  0 0 12px rgba(34, 197, 94, 0.25);
+  --glow-green-md:  0 0 24px rgba(34, 197, 94, 0.30);
+  --glow-green-lg:  0 4px 32px rgba(34, 197, 94, 0.35);
+  --glow-green-xl:  0 8px 48px rgba(22, 163, 74, 0.40);
+
+  /* Blue glow variants */
+  --glow-blue-sm:   0 0 12px rgba(59, 130, 246, 0.25);
+  --glow-blue-md:   0 0 24px rgba(59, 130, 246, 0.30);
+
+  /* ----------------------------------------------------------
+     6. Z-INDEX SCALE
+     ---------------------------------------------------------- */
+
+  --z-base:     0;
+  --z-raised:   1;
+  --z-above:    2;
+  --z-float:    3;
+  --z-sticky:   6;
+  --z-header:   10;
+  --z-dropdown: 12;
+  --z-overlay:  20;
+  --z-drawer:   35;
+  --z-popover:  60;
+  --z-modal:    1000;
+  --z-toast:    1001;
+
+  /* ----------------------------------------------------------
+     7. TRANSITIONS
+     ---------------------------------------------------------- */
+
+  --transition-fast:    0.12s ease;
+  --transition-base:    0.2s ease;
+  --transition-slow:    0.3s ease;
+  --transition-spring:  0.28s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Granular durations (for custom easing combos) */
+  --duration-fast:    0.12s;
+  --duration-quick:   0.15s;
+  --duration-snappy:  0.18s;
+  --duration-base:    0.2s;
+  --duration-ease:    0.25s;
+  --duration-smooth:  0.28s;
+  --duration-slow:    0.3s;
+
+  /* ----------------------------------------------------------
+     8. CONTENT WIDTHS
+     ---------------------------------------------------------- */
+
+  --content-xs:   480px;
+  --content-sm:   640px;
+  --content-md:   768px;
+  --content-lg:   1024px;
+  --content-xl:   1200px;
+  --content-2xl:  1400px;
+  --content-full: 100%;
+}
+
+/* ============================================================
+   BREAKPOINTS (reference — cannot use CSS vars in @media)
+   ============================================================
+   --bp-xs:   480px    — small phones
+   --bp-sm:   640px    — phones landscape
+   --bp-md:   768px    — tablets portrait
+   --bp-lg:  1024px    — tablets landscape / small laptops
+   --bp-xl:  1200px    — desktops
+   --bp-2xl: 1400px    — wide desktops
+   ============================================================ */
+
+/* ============================================================
+   DARK MODE OVERRIDES (placeholder)
+   ============================================================
+   Uncomment and adjust when dark-mode support is implemented.
+
+   @media (prefers-color-scheme: dark) {
+     :root {
+       --page-bg:       #0f172a;
+       --page-bg-deep:  #020617;
+       --panel:         rgba(30, 41, 59, 0.84);
+       --line:          rgba(226, 232, 240, 0.12);
+       --heading-text:  #f1f5f9;
+       --body-text:     #e2e8f0;
+       --muted-text:    #94a3b8;
+       --accent-strong: #60a5fa;
+       --soft-shadow:   0 24px 50px rgba(0, 0, 0, 0.40);
+
+       --color-success: var(--green-400);
+       --color-warning: var(--amber-400);
+       --color-danger:  var(--red-400);
+       --color-info:    var(--blue-400);
+     }
+   }
+
+   ============================================================ */

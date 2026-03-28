@@ -1,0 +1,138 @@
+/* SupportChatWidget CSS Module */
+
+.support-chat {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.support-chat-toggle {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.3);
+}
+
+.support-chat-panel {
+  width: min(360px, calc(100vw - 24px));
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.22);
+  overflow: hidden;
+}
+
+.support-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #0d5a2a;
+  color: #ffffff;
+}
+
+.support-chat-header button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.support-chat-messages {
+  max-height: 220px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+
+.support-chat-messages p {
+  margin: 0;
+  color: #1e293b;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.support-chat-messages p + p {
+  margin-top: 8px;
+}
+
+.bot {
+  background: #f0fdf4;
+  border: 1px solid rgba(22, 163, 74, 0.14);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.user {
+  background: #f0fdf4;
+  border: 1px solid rgba(22, 163, 74, 0.18);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.support-chat-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 12px 8px;
+}
+
+.support-chat-quick-actions button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.support-chat-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 12px;
+}
+
+.support-chat-input-row input {
+  min-height: 40px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: 10px;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.support-chat-input-row button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #16a34a;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===== Responsive overrides ===== */
+@media (max-width: 820px) {
+  .support-chat {
+    right: 10px;
+    bottom: 10px;
+  }
+}

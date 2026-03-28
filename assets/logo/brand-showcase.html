@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gully World — Brand Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-700: #15803d;
+    --green-800: #166534;
+    --green-900: #14532d;
+    --gold: #D4AF37;
+    --navy: #0f172a;
+    --slate-600: #475569;
+    --slate-400: #94a3b8;
+    --slate-200: #e2e8f0;
+    --white: #ffffff;
+    --bg-light: #f8fafc;
+    --bg-dark: #0a1220;
+  }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--navy);
+    background: var(--bg-light);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(165deg, var(--navy) 0%, #0d2818 50%, var(--green-900) 100%);
+    padding: 100px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(21, 128, 61, 0.15), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08), transparent 40%);
+    pointer-events: none;
+  }
+  .hero-mark { width: 120px; height: 120px; margin: 0 auto 32px; position: relative; z-index: 1; }
+  .hero-mark svg { width: 100%; height: 100%; filter: drop-shadow(0 0 40px rgba(21, 128, 61, 0.3)); }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero .tagline {
+    font-size: 1rem;
+    color: var(--slate-400);
+    margin-top: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== DESIGN CONCEPT ===== */
+  .concept { padding: 80px 0; }
+  .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .concept-visual { text-align: center; padding: 40px; }
+  .concept-visual img { width: 200px; height: 200px; }
+  .concept-annotations { list-style: none; text-align: left; margin-top: 24px; }
+  .concept-annotations li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--slate-200);
+    font-size: 0.9rem;
+    color: var(--slate-600);
+  }
+  .concept-annotations li strong { color: var(--navy); }
+  .concept-text h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
+  .concept-text p { color: var(--slate-600); margin-bottom: 16px; font-size: 0.95rem; }
+  .concept-text p strong { color: var(--navy); }
+
+  /* ===== LOGO VARIANTS ===== */
+  .variants { padding: 0 0 80px; }
+  .variants h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; text-align: center; }
+  .variants-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .variant-card {
+    padding: 40px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .variant-card:hover { transform: translateY(-3px); }
+  .variant-card.light {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .variant-card.dark {
+    background: var(--bg-dark);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .variant-card.full { grid-column: 1 / -1; }
+  .variant-card img { max-width: 260px; max-height: 80px; object-fit: contain; }
+  .variant-card img.mark { max-width: 80px; max-height: 80px; }
+  .variant-card img.icon { max-width: 100px; max-height: 100px; border-radius: 22px; }
+  .variant-card img.favicon { width: 64px; height: 64px; image-rendering: pixelated; }
+  .variant-label {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .variant-label.light-text { color: var(--slate-400); }
+  .variant-label.dark-text { color: rgba(255,255,255,0.35); }
+  .variant-file {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    opacity: 0.4;
+  }
+
+  /* ===== COLOR PALETTE ===== */
+  .palette { padding: 0 0 80px; }
+  .palette h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; text-align: center; }
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+  .color-chip {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--slate-200);
+    background: var(--white);
+  }
+  .color-swatch {
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 8px 12px;
+  }
+  .color-swatch .hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.85);
+    color: var(--navy);
+  }
+  .color-swatch.on-dark .hex { background: rgba(0,0,0,0.45); color: var(--white); }
+  .color-info { padding: 12px; }
+  .color-info .name { font-size: 0.8rem; font-weight: 700; color: var(--navy); }
+  .color-info .role { font-size: 0.75rem; color: var(--slate-400); margin-top: 2px; }
+
+  /* ===== TYPOGRAPHY ===== */
+  .typography { padding: 0 0 80px; }
+  .typography h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; text-align: center; }
+  .type-specimen {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    padding: 40px;
+  }
+  .type-row { margin-bottom: 24px; }
+  .type-row:last-child { margin-bottom: 0; }
+  .type-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 4px; }
+  .type-sample-800 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; color: var(--navy); }
+  .type-sample-700 { font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+  .type-sample-500 { font-size: 1rem; font-weight: 500; color: var(--slate-600); }
+  .type-sample-400 { font-size: 0.9rem; font-weight: 400; color: var(--slate-600); line-height: 1.7; }
+
+  /* ===== DEVELOPER REFERENCE ===== */
+  .dev-ref { padding: 0 0 80px; }
+  .dev-ref h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; text-align: center; }
+  .code-block {
+    background: var(--bg-dark);
+    border-radius: 12px;
+    padding: 24px;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  .code-block pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--slate-400);
+    line-height: 1.7;
+    white-space: pre;
+  }
+  .code-block pre .key { color: #93c5fd; }
+  .code-block pre .str { color: #86efac; }
+  .code-block pre .comment { color: #475569; }
+  .file-tree {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .file-tree .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    font-size: 0.85rem;
+  }
+  .file-tree .row:last-child { border-bottom: none; }
+  .file-tree .fname { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--navy); font-weight: 500; }
+  .file-tree .fdesc { color: var(--slate-400); font-size: 0.78rem; }
+
+  /* ===== FOOTER ===== */
+  .showcase-footer {
+    background: var(--navy);
+    padding: 32px 0;
+    text-align: center;
+    color: var(--slate-400);
+    font-size: 0.8rem;
+  }
+  .showcase-footer strong { color: var(--white); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .concept-grid { grid-template-columns: 1fr; }
+    .variants-grid { grid-template-columns: 1fr; }
+    .variant-card.full { grid-column: auto; }
+    .palette-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-mark">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M52 15 A26 26 0 1 0 52 49 L43 41 A14 14 0 1 1 43 23 Z" fill="#15803d"/>
+        <path d="M34 27 L52 27 L52 37 L34 37 Z" fill="#15803d"/>
+        <circle cx="52" cy="15" r="3.5" fill="#D4AF37"/>
+      </svg>
+    </div>
+    <h1>GULLY <span>WORLD</span></h1>
+    <p class="tagline">THE SPORTS NETWORK FOR MODERN PLAYERS</p>
+  </div>
+</section>
+
+<!-- DESIGN CONCEPT -->
+<section class="concept">
+  <div class="container">
+    <p class="section-label">Design Concept</p>
+    <div class="concept-grid">
+      <div class="concept-visual">
+        <img src="logo-mark.svg" alt="Gully World mark">
+        <ul class="concept-annotations">
+          <li><strong>Outer ring</strong> — The globe, representing "World" and global ambition</li>
+          <li><strong>G letterform</strong> — Bold geometric "G" for Gully, the brand initial</li>
+          <li><strong>Ring gap</strong> — Dynamic opening suggesting energy and forward motion</li>
+          <li><strong>Horizontal bar</strong> — The crossbar of the G, grounding the mark with stability</li>
+          <li><strong>Gold accent dot</strong> — A championship/trophy element evoking the cricket ball</li>
+        </ul>
+      </div>
+      <div class="concept-text">
+        <h2>The Green G</h2>
+        <p>The Gully World mark is a <strong>bold geometric "G"</strong> constructed from a thick circular ring with a dynamic opening and horizontal bar. Every element carries meaning.</p>
+        <p>The <strong>circular form</strong> represents both a globe (World) and a cricket ball — the two foundational ideas of the brand. The thick ring conveys strength and permanence, while the <strong>open gap</strong> on the right side suggests forward motion, ambition, and accessibility.</p>
+        <p>The <strong>gold accent dot</strong> at the opening evokes a championship trophy element and the seam of a cricket ball — connecting the brand to competitive sports heritage.</p>
+        <p><strong>Color choice:</strong> Forest green (#15803d) was chosen over brighter greens for its premium, authoritative quality. It evokes lush sports grounds while maintaining the gravitas expected of a platform aspiring to be a global brand.</p>
+        <p><strong>Typography:</strong> DM Sans in Extra Bold (800) for "GULLY" provides impact and confidence. The tracked-out "WORLD" in Medium weight creates a sophisticated hierarchy — the bold G mark and bold "GULLY" command attention, while "WORLD" anchors the identity with understated elegance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO VARIANTS -->
+<section class="variants">
+  <div class="container">
+    <p class="section-label">Logo System</p>
+    <h2>All Variants</h2>
+    <div class="variants-grid">
+      <!-- Full logo on light -->
+      <div class="variant-card light full">
+        <span class="variant-label light-text">Full Logo</span>
+        <img src="logo-full.svg" alt="Full logo">
+        <span class="variant-file" style="color: var(--slate-400);">logo-full.svg</span>
+      </div>
+      <!-- White logo on dark -->
+      <div class="variant-card dark full">
+        <span class="variant-label dark-text">White Variant</span>
+        <img src="logo-white.svg" alt="White logo">
+        <span class="variant-file" style="color: rgba(255,255,255,0.3);">logo-white.svg</span>
+      </div>
+      <!-- Mark on dark -->
+      <div class="variant-card dark">
+        <span class="variant-label dark-text">Mark</span>
+        <img src="logo-mark.svg" alt="Logo mark" class="mark">
+        <span class="variant-file" style="color: rgba(255,255,255,0.3);">logo-mark.svg</span>
+      </div>
+      <!-- Icon on light -->
+      <div class="variant-card light">
+        <span class="variant-label light-text">App Icon</span>
+        <img src="logo-icon.svg" alt="App icon" class="icon">
+        <span class="variant-file" style="color: var(--slate-400);">logo-icon.svg</span>
+      </div>
+      <!-- Wordmark on light -->
+      <div class="variant-card light">
+        <span class="variant-label light-text">Wordmark</span>
+        <img src="logo-wordmark.svg" alt="Wordmark">
+        <span class="variant-file" style="color: var(--slate-400);">logo-wordmark.svg</span>
+      </div>
+      <!-- Favicon on dark -->
+      <div class="variant-card dark">
+        <span class="variant-label dark-text">Favicon (16&times;16)</span>
+        <img src="favicon.svg" alt="Favicon" class="favicon">
+        <span class="variant-file" style="color: rgba(255,255,255,0.3);">favicon.svg</span>
+      </div>
+      <!-- Black logo on light -->
+      <div class="variant-card light full">
+        <span class="variant-label light-text">Black Variant</span>
+        <img src="logo-black.svg" alt="Black logo">
+        <span class="variant-file" style="color: var(--slate-400);">logo-black.svg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR PALETTE -->
+<section class="palette">
+  <div class="container">
+    <p class="section-label">Color Palette</p>
+    <h2>Brand Colors</h2>
+    <div class="palette-grid">
+      <div class="color-chip">
+        <div class="color-swatch on-dark" style="background: #15803d;"><span class="hex">#15803d</span></div>
+        <div class="color-info"><div class="name">Brand Green</div><div class="role">Primary mark, CTAs, headings</div></div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch on-dark" style="background: #0f172a;"><span class="hex">#0f172a</span></div>
+        <div class="color-info"><div class="name">Deep Navy</div><div class="role">Text, backgrounds, dark variant</div></div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch on-dark" style="background: #D4AF37;"><span class="hex">#D4AF37</span></div>
+        <div class="color-info"><div class="name">Championship Gold</div><div class="role">Accent, highlights, trophy element</div></div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background: #22c55e;"><span class="hex">#22c55e</span></div>
+        <div class="color-info"><div class="name">Action Green</div><div class="role">Buttons, interactive states, success</div></div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background: #f8fafc;"><span class="hex">#f8fafc</span></div>
+        <div class="color-info"><div class="name">Surface Light</div><div class="role">Cards, panels, light backgrounds</div></div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch on-dark" style="background: #0a1220;"><span class="hex">#0a1220</span></div>
+        <div class="color-info"><div class="name">Surface Dark</div><div class="role">Dark mode, footer, hero sections</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="typography">
+  <div class="container">
+    <p class="section-label">Typography</p>
+    <h2>DM Sans</h2>
+    <div class="type-specimen">
+      <div class="type-row">
+        <div class="type-label">Extra Bold (800) — Headings & Brand</div>
+        <div class="type-sample-800">GULLY WORLD</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Bold (700) — Subheadings</div>
+        <div class="type-sample-700">The sports network for modern players</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Medium (500) — UI Labels</div>
+        <div class="type-sample-500">Create Tournament &middot; Hire Player &middot; Book Turf &middot; Join Event</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Regular (400) — Body Text</div>
+        <div class="type-sample-400">Gully World is built for players, partners, and organizers to create tournaments, publish events, hire talent, and expand into future store experiences without rebuilding the platform.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOPER REFERENCE -->
+<section class="dev-ref">
+  <div class="container">
+    <p class="section-label">Developer Reference</p>
+    <h2>Implementation</h2>
+    <div class="code-block"><pre><span class="comment">// tailwind.config.js — brand color tokens</span>
+<span class="key">colors</span>: {
+  <span class="key">brand</span>: {
+    <span class="key">primary</span>:   <span class="str">'#15803d'</span>,   <span class="comment">// Mark, headings</span>
+    <span class="key">action</span>:    <span class="str">'#22c55e'</span>,   <span class="comment">// CTAs, buttons</span>
+    <span class="key">gold</span>:      <span class="str">'#D4AF37'</span>,   <span class="comment">// Championship accent</span>
+    <span class="key">navy</span>:      <span class="str">'#0f172a'</span>,   <span class="comment">// Text, dark bg</span>
+    <span class="key">surface</span>:   <span class="str">'#f8fafc'</span>,   <span class="comment">// Light cards</span>
+    <span class="key">dark</span>:      <span class="str">'#0a1220'</span>,   <span class="comment">// Dark surfaces</span>
+  }
+}</pre></div>
+    <div class="file-tree">
+      <div class="row"><span class="fname">logo-mark.svg</span><span class="fdesc">Canonical mark — 64&times;64 source of truth</span></div>
+      <div class="row"><span class="fname">logo-full.svg</span><span class="fdesc">Mark + GULLY WORLD wordmark (horizontal)</span></div>
+      <div class="row"><span class="fname">logo-wordmark.svg</span><span class="fdesc">GULLY WORLD text only</span></div>
+      <div class="row"><span class="fname">logo-icon.svg</span><span class="fdesc">App icon (512&times;512 rounded square)</span></div>
+      <div class="row"><span class="fname">favicon.svg</span><span class="fdesc">Simplified mark at 16&times;16</span></div>
+      <div class="row"><span class="fname">logo-white.svg</span><span class="fdesc">Full logo — white variant for dark backgrounds</span></div>
+      <div class="row"><span class="fname">logo-black.svg</span><span class="fdesc">Full logo — dark variant for light backgrounds</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="showcase-footer">
+  <div class="container">
+    <strong>GULLY WORLD</strong> &middot; Brand Identity<br>
+    Gully World Technology Pvt. Ltd. &copy; 2026
+  </div>
+</footer>
+
+</body>
+</html>

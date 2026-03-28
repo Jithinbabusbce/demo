@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" fill="none">
+  <!-- Full Logo: Mark + GULLY WORLD wordmark -->
+  <g transform="translate(4, 4)">
+    <path d="M52 15 A26 26 0 1 0 52 49 L43 41 A14 14 0 1 1 43 23 Z" fill="#15803d"/>
+    <path d="M34 27 L52 27 L52 37 L34 37 Z" fill="#15803d"/>
+    <circle cx="52" cy="15" r="3.5" fill="#D4AF37"/>
+  </g>
+  <!-- Wordmark: WORLD right-aligned to GULLY -->
+  <text x="80" y="32" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em" fill="#15803d" dominant-baseline="central">GULLY</text>
+  <text x="166" y="52" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="0.22em" fill="#0f172a" dominant-baseline="central" text-anchor="end">WORLD</text>
+</svg>

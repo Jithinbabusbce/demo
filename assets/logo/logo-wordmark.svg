@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" fill="none">
+  <!-- Wordmark only: GULLY / WORLD (right-aligned) -->
+  <text x="10" y="24" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="24" font-weight="800" letter-spacing="0.12em" fill="#15803d" dominant-baseline="central">GULLY</text>
+  <text x="118" y="46" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="0.22em" fill="#0f172a" dominant-baseline="central" text-anchor="end">WORLD</text>
+</svg>

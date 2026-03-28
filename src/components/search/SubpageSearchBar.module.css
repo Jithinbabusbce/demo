@@ -1,0 +1,206 @@
+/* SubpageSearchBar CSS Module */
+
+.subpage-search-wrap {
+  background: #f5f7fb;
+  border-bottom: 1px solid rgba(15, 34, 51, 0.08);
+  padding: 14px 0;
+}
+
+.subpage-search-bar {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.subpage-search-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.subpage-search-input-row:focus-within .subpage-search-box {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.subpage-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 1 220px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(15, 34, 51, 0.14);
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.subpage-search-input {
+  flex: 1;
+  min-height: 38px;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #0f172a;
+  background: transparent;
+  outline: none;
+}
+
+.subpage-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.subpage-search-button {
+  min-height: 34px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.12s;
+}
+
+.subpage-search-button:hover {
+  background: #0f172a;
+  transform: translateY(-1px);
+}
+
+.subpage-clear-filter-btn {
+  border: 1px solid rgba(15, 34, 51, 0.14);
+  border-radius: 999px;
+  background: transparent;
+  color: #64748b;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.subpage-clear-filter-btn:hover {
+  color: #dc2626;
+  border-color: #dc2626;
+}
+
+.subpage-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.subpage-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 7px 14px;
+  border: 1px solid rgba(15, 34, 51, 0.14);
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.filter-control:hover {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.filter-control.active {
+  border-color: #16a34a;
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+.filter-icon {
+  font-size: 0.82rem;
+  line-height: 1;
+  opacity: 0.62;
+}
+
+.select-control {
+  position: relative;
+  padding-right: 30px;
+}
+
+.select-control select {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--sans);
+  font-size: 0.93rem;
+  font-weight: 600;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.select-control::after {
+  content: '\25BE';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.86rem;
+  color: #475569;
+  pointer-events: none;
+}
+
+/* ===== Responsive overrides ===== */
+@media (max-width: 820px) {
+  .subpage-filter-bar {
+    gap: 8px;
+  }
+
+  .filter-control {
+    min-height: 40px;
+    padding: 0 13px;
+    font-size: 0.84rem;
+  }
+
+  .subpage-search-input-row {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  .subpage-search-input {
+    min-height: 42px;
+  }
+
+  .subpage-search-button,
+  .subpage-clear-filter-btn {
+    min-height: 38px;
+  }
+
+  .subpage-search-input-row {
+    border-radius: 12px;
+  }
+}
